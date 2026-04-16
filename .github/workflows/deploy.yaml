@@ -8,13 +8,14 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: DEV
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
@@ -22,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Deploy to Azure
-        uses: azure/webapps-deploy@v3   
+        uses: azure/webapps-deploy@v2
         with:
-          app-name: visit-counter-app-moncef   
+          app-name: visit-counter-app-moncef
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
